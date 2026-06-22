@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克游戏 · 简明指南与访问提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fae3c6 0%, #f3d1af 60%, #e7c29b 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.6;
+      color: #2e241b;
+    }
+
+    .page-wrap {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    /* 白色卡片 – 柔和圆角 + 浅阴影 */
+    .card {
+      background: rgba(255, 250, 240, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 36px;
+      padding: 2.2rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 28px rgba(110, 70, 40, 0.10),
+                  0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.2s;
+    }
+
+    /* HERO 区 – 暖调强调 */
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem 2.5rem;
+      background: rgba(255, 247, 235, 0.85);
+      border: 1px solid rgba(230, 190, 150, 0.30);
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #4e3422;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.15rem;
+      color: #7a5f48;
+      max-width: 520px;
+      margin: 0 auto 1.8rem;
+      border-left: 3px solid #dbb692;
+      padding-left: 1.2rem;
+      text-align: left;
+    }
+
+    .hero .guide-tag {
+      display: inline-block;
+      background: #dbb692;
+      color: #2f2219;
+      padding: 0.4rem 1.4rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(160, 100, 50, 0.15);
+    }
+
+    /* 通用标题 */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 450;
+      margin-bottom: 1.2rem;
+      color: #4e3422;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span {
+      background: #dbb692;
+      width: 28px;
+      height: 4px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-weight: 450;
+      color: #3f2d20;
+      margin: 1.6rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 0.9rem;
+    }
+
+    /* 特色网格 – 自适应 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.2rem;
+      margin: 1.4rem 0 0.2rem;
+    }
+
+    .feature-item {
+      background: #fcf3e9;
+      border-radius: 28px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      border: 1px solid #ebd6c0;
+    }
+
+    .feature-item .num {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #b28962;
+      line-height: 1;
+    }
+
+    .feature-item h4 {
+      font-weight: 500;
+      margin: 0.5rem 0 0.3rem;
+      font-size: 1rem;
+      color: #3f2d20;
+    }
+
+    .feature-item p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* FAQ 摘要 */
+    .faq-block {
+      margin-top: 0.8rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e5d4c2;
+      padding: 0.9rem 0;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #4e3422;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #5f4b39;
+      font-size: 0.95rem;
+    }
+
+    /* 链接按钮样式 – 圆角按钮感 */
+    .btn-link {
+      display: inline-block;
+      background: #dbb692;
+      color: #2a1f17;
+      text-decoration: none;
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: background 0.15s, transform 0.1s;
+      border: 1px solid #c9a77e;
+      box-shadow: 0 3px 6px rgba(150, 100, 50, 0.10);
+      margin-top: 0.4rem;
+    }
+
+    .btn-link:hover {
+      background: #cfaa83;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(100, 60, 30, 0.12);
+    }
+
+    .btn-link:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    }
+
+    /* 底部区域 */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem 1.8rem;
+      margin: 1.2rem 0 0.8rem;
+    }
+
+    .footer-links a {
+      color: #6d513a;
+      text-decoration: none;
+      border-bottom: 1px dotted #c9a77e;
+      padding-bottom: 2px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: #3f2d20;
+      border-bottom-style: solid;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #78624d;
+      margin-top: 1.2rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .card {
+        padding: 1.6rem 1.2rem;
+        border-radius: 28px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .section-title {
+        font-size: 1.25rem;
+      }
+      .btn-link {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HERO 区 -->
+  <div class="card hero">
+    <h1>♢ 德州扑克游戏</h1>
+    <div class="subhead">
+      从入门到上桌 · 一份简明指南与访问提醒<br>
+      无论你是第一次翻开底牌，还是想重温节奏，这里都有温和的落脚点。
+    </div>
+    <div class="guide-tag">手牌范围 · 位置意识 · 下注逻辑</div>
+  </div>
+
+  <!-- 优势区 (特点 + 场景) -->
+  <div class="card">
+    <div class="section-title">
+      <span></span> 为什么许多人选择从这扇门进入
+    </div>
+    <p>
+      一副牌、两位盲注、五张公共牌 —— 规则很简单，但决策的深度让每一手都独一无二。
+      许多玩家发现，比起单纯的结果，思考过程本身就能带来持续的乐趣。
+    </p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="num">01</div>
+        <h4>明确的结构</h4>
+        <p>翻牌、转牌、河牌，每个阶段都有清晰的行动轮次，新手也能逐步跟上节奏。</p>
+      </div>
+      <div class="feature-item">
+        <div class="num">02</div>
+        <h4>策略层次</h4>
+        <p>从手牌选择到诈唬频率，从底池赔率到范围对抗，总有新的细节值得琢磨。</p>
+      </div>
+      <div class="feature-item">
+        <div class="num">03</div>
+        <h4>社交与专注</h4>
+        <p>在线或线下，每一局都是观察、判断与自我控制的练习，氛围由玩家共同塑造。</p>
+      </div>
+      <div class="feature-item">
+        <div class="num">04</div>
+        <h4>持续学习</h4>
+        <p>牌谱、概率、位置价值…… 随着经验积累，你对牌桌的理解会自然生长。</p>
+      </div>
+    </div>
+    <p style="margin-top: 1.2rem;">
+      若你想更系统地了解规则、术语以及常见思路，可以花些时间看看
+      <a href="https://dezhoupukegame.com" 
+         style="color:#4e3422; font-weight:500; text-decoration:underline dotted #b28962;">德州扑克游戏</a> 
+      上的基础内容 —— 那里整理了不少平实的介绍，适合作为起点。
+    </p>
+  </div>
+
+  <!-- 说明区：简明指南 + 访问提醒 -->
+  <div class="card">
+    <div class="section-title">
+      <span></span> 一份简明指南 · 以及两个小提醒
+    </div>
+    <h3>▸ 了解手牌价值</h3>
+    <p>
+      不是所有起手牌都值得参与。学会区分“可玩牌”与“边缘牌”能帮你减少许多不必要的损失。
+      位置越靠后，你可以用更宽的范围入池；前位则建议更紧。
+    </p>
+    <h3>▸ 下注与底池的关系</h3>
+    <p>
+      下注不只是为了让别人弃牌。思考你想实现什么：价值、诈唬、还是获取信息？
+      保持下注尺度的一致性会令对手更难读懂你。
+    </p>
+    <h3>▸ 访问提醒</h3>
+    <p>
+      当你准备在浏览器里打开 <a href="https://dezhoupukegame.com" 
+         style="color:#4e3422; font-weight:500; text-decoration:underline dotted #b28962;">德州扑克游戏</a> 时，建议使用稳定的网络环境，并确认网址无误。
+      页面主要使用中文，加载速度通常不错，但若遇到显示问题，可以尝试刷新或更换浏览器。
+    </p>
+    <p>
+      另外，请记住：任何形式的牌局都应当以娱乐和思考为前提，量力而行，不执着于短期输赢。
+      保持轻松的心态，才能更好地体会博弈的趣味。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="card">
+    <div class="section-title">
+      <span></span> 常见疑问摘要
+    </div>
+    <div class="faq-block">
+      <div class="faq-item">
+        <div class="faq-q">Q：完全零基础，应该先看什么？</div>
+        <div class="faq-a">A：可以先了解手牌大小顺序、行动轮次以及底池分配规则。许多教学文章会从一手模拟牌局开始讲解。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：在线玩和线下玩主要区别在哪里？</div>
+        <div class="faq-a">A：线上节奏更快，可以同时多桌，且能借助辅助工具记录牌谱；线下更注重肢体语言和现场氛围。两种环境都有独特的乐趣。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：如何提高读牌能力？</div>
+        <div class="faq-a">A：多复盘自己的手牌，尝试推测对手的范围。从“他为什么下注”这个角度开始，比单纯猜对手有什么牌更实用。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：网站上的内容更新频率如何？</div>
+        <div class="faq-a">A：内容会不定期更新，包括基础规则、策略文章以及常见误区梳理。你可以根据自己当前的阶段挑选阅读。</div>
+      </div>
+    </div>
+    <div style="margin-top: 1.2rem; text-align: right;">
+      <a href="https://dezhoupukegame.com" class="btn-link">德州扑克游戏</a>
+    </div>
+  </div>
+
+  <!-- 底部链接 -->
+  <div class="card" style="padding: 1.2rem 2rem; text-align: center;">
+    <div class="footer-links">
+      <a href="https://dezhoupukegame.com">德州扑克游戏</a>
+      <a href="#">关于规则基础</a>
+      <a href="#">常见术语</a>
+      <a href="#">位置与策略</a>
+    </div>
+    <div class="footer-note">
+      页面仅为介绍与指引，不构成任何形式的投资或赌博建议。<br>
+      理性娱乐，适度参与。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
