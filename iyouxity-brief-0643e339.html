@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏体育 · 轻量导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f6f9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2024;
+        }
+
+        /* 深色头图区 */
+        .hero {
+            background: linear-gradient(145deg, #0b0d17 0%, #1a1e2b 100%);
+            color: #eef0f5;
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.10) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 0 auto 1.8rem;
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 主体内容容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3.5rem;
+        }
+
+        /* 介绍区块 */
+        .intro-section {
+            margin-bottom: 3.2rem;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .intro-section h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .intro-section h2 span {
+            background: #ff6b35;
+            width: 6px;
+            height: 26px;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        .intro-section p {
+            color: #2d313a;
+            margin: 1rem 0;
+            font-size: 1.05rem;
+        }
+
+        .intro-link {
+            color: #ff6b35;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px dashed rgba(255, 107, 53, 0.3);
+            transition: border-color 0.2s;
+        }
+
+        .intro-link:hover {
+            border-bottom-color: #ff6b35;
+        }
+
+        /* 三个场景模块 —— 横向卡片 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #eceef2;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+            border-color: #dde0e6;
+        }
+
+        .scene-card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .scene-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e2024;
+            margin-bottom: 0.6rem;
+        }
+
+        .scene-card p {
+            color: #3f444e;
+            font-size: 0.95rem;
+        }
+
+        /* 常见说明 / FAQ 摘要 */
+        .faq-summary {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            margin: 2rem 0 0.8rem;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #0b0d17;
+        }
+
+        .faq-item {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #ecedf0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1e2024;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .faq-item span {
+            color: #3f444e;
+            font-size: 0.95rem;
+        }
+
+        .faq-more {
+            margin-top: 1rem;
+            text-align: right;
+            color: #5a5f6b;
+            font-size: 0.9rem;
+        }
+
+        .faq-more a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* 尾注 / 友好提示 */
+        .footer-note {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            color: #6d737e;
+            font-size: 0.9rem;
+            border-top: 1px solid #dfe2e8;
+            margin-top: 2.2rem;
+        }
+
+        .footer-note a {
+            color: #ff6b35;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .scenes-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .intro-section {
+                padding: 1.5rem;
+            }
+
+            .faq-summary {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 1rem 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>爱游戏体育</h1>
+        <p>快速了解平台用途，找到适合你的体育内容与互动方式。</p>
+        <div class="tagline">轻量导航 · 一目了然</div>
+    </header>
+
+    <div class="container">
+        <!-- 核心介绍：站在用户快速了解的角度 -->
+        <section class="intro-section">
+            <h2><span></span> 这是怎样的站点？</h2>
+            <p>
+                如果你正在寻找一个围绕体育赛事、运动资讯和爱好者社群的集中地，<a href="https://iyouxity.com" class="intro-link">爱游戏体育</a> 
+                提供了清晰的功能分区。这里不堆砌信息，而是把最常见的需求——比分、讨论、数据——整理成直观的模块。
+            </p>
+            <p>
+                站内内容以实用性为主，无论是日常关注联赛动态，还是想了解某支队伍的表现，都能较快找到对应版块。
+                整体设计偏向简洁，适合希望快速获取信息而不被冗余元素干扰的用户。
+            </p>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <div class="scenes-grid">
+            <div class="scene-card">
+                <div class="icon">🏀</div>
+                <h3>实时赛事跟踪</h3>
+                <p>覆盖足球、篮球等主流联赛的比分与进程，页面更新及时，便于随时掌握赛况变化。</p>
+            </div>
+            <div class="scene-card">
+                <div class="icon">📊</div>
+                <h3>数据与统计</h3>
+                <p>按赛季、队伍、球员维度整理的基础数据，适合赛前查阅或赛后复盘时参考。</p>
+            </div>
+            <div class="scene-card">
+                <div class="icon">💬</div>
+                <h3>交流与讨论</h3>
+                <p>设有主题分区，用户可以围绕具体比赛或话题发言，氛围相对理性、友好。</p>
+            </div>
+        </div>
+
+        <!-- 常见说明 FAQ 摘要 -->
+        <div class="faq-summary">
+            <h3>常见说明</h3>
+            <div class="faq-item">
+                <strong>使用前需要注册吗？</strong>
+                <span>浏览大部分公开内容无需注册；参与讨论或收藏功能需要创建简单账号。</span>
+            </div>
+            <div class="faq-item">
+                <strong>数据来源是否可靠？</strong>
+                <span>平台整合公开赛事数据与官方统计，但建议以各体育联盟官方发布为准。</span>
+            </div>
+            <div class="faq-item">
+                <strong>移动端体验如何？</strong>
+                <span>页面针对手机屏幕做了自适应调整，核心功能在移动浏览器上可正常使用。</span>
+            </div>
+            <div class="faq-more">
+                更多细节可前往 <a href="https://iyouxity.com">爱游戏体育</a> 内查看帮助说明。
+            </div>
+        </div>
+
+        <!-- 温和提示 / 尾注 -->
+        <div class="footer-note">
+            <p>信息仅供参考，实际内容以站点更新为准。如果觉得有用，不妨再去 <a href="https://iyouxity.com">爱游戏体育</a> 里自己探索看看。</p>
+        </div>
+    </div>
+
+</body>
+</html>
